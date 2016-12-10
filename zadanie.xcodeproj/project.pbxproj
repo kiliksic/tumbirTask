@@ -125,6 +125,7 @@
 		E7091DB01DFB9ECC007049D4 /* zadanie */ = {
 			isa = PBXGroup;
 			children = (
+				E7091DF31DFBC96A007049D4 /* ApiManager */,
 				E7091DE51DFBA56E007049D4 /* Views */,
 				E7091DE41DFBA0CA007049D4 /* Controllers */,
 				E7091DB41DFB9ECC007049D4 /* AppDelegate.h */,
@@ -179,6 +180,21 @@
 				E7091DEA1DFBA634007049D4 /* SearchBarView.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		E7091DF31DFBC96A007049D4 /* ApiManager */ = {
+			isa = PBXGroup;
+			children = (
+				E7091DF41DFBC970007049D4 /* Model */,
+			);
+			name = ApiManager;
+			sourceTree = "<group>";
+		};
+		E7091DF41DFBC970007049D4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

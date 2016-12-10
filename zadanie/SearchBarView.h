@@ -10,4 +10,9 @@
 
 @interface SearchBarView : UIView
 
+@property (strong, nonatomic) UITextField *usernameTextField;
+@property (strong, nonatomic) UIButton *requestButton;
+
+
+
 @end

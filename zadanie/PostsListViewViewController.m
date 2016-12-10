@@ -22,41 +22,51 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor yellowColor];
+    self.title = @"SEARCH POSTS";
     _searchBar = [[SearchBarView alloc] init];
     
-//    self.view = _searchBar;
     [self.view addSubview:_searchBar];
     
-    [self setupView];
-    
     // init table view
-    _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] init];
     
     // must set delegate & dataSource, otherwise the the table will be empty and not responsive
     _tableView.delegate = self;
     _tableView.dataSource = self;
     
-    _tableView.backgroundColor = [UIColor cyanColor];
+//    _tableView.backgroundColor = [UIColor cyanColor];
     
     // add to canvas
-//    [self.view addSubview:_tableView];
+    [self.view addSubview:_tableView];
+    
+    [self setupView];
+
     
 }
 
 - (void)setupView {
     [_searchBar makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view.top).offset(10);
+        make.top.equalTo(self.view.top).offset(50);
         make.left.equalTo(self.view.left);
         make.right.equalTo(self.view.right);
         make.width.equalTo(self.view.width);
+        make.bottom.equalTo(self.tableView.top);
         
-        make.height.mas_equalTo(120);
+        make.height.mas_equalTo(80);
         
     }];
     
     [_searchBar setBackgroundColor:[UIColor redColor]];
-
+    
+    [_tableView makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.searchBar.bottom);
+        make.left.equalTo(self.view.left);
+        make.right.equalTo(self.view.right);
+        make.width.equalTo(self.view.width);
+        make.bottom.equalTo(self.view.bottom);
+        
+        
+    }];
 }
 
 #pragma mark - UITableViewDataSource
