@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  SearchBarView.h
 //  zadanie
 //
 //  Created by Kacper Wolnik on 10.12.2016.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface SearchBarView : UIView
 
 @end
-
