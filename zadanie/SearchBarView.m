@@ -9,6 +9,7 @@
 #import "SearchBarView.h"
 
 @implementation SearchBarView
+@synthesize delegate;
 
 - (id)init {
     self = [super init];
@@ -23,7 +24,10 @@
     _usernameTextField.placeholder = @"Username";
     _usernameTextField.backgroundColor=[UIColor whiteColor];
     _usernameTextField.layer.borderWidth=1.0;
-    _requestButton = [[UIButton alloc] init];
+    
+    _requestButton = UIButton.new;
+    [_requestButton setTitle:@"Get" forState:UIControlStateNormal];
+    [_requestButton addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     [self addSubview:_usernameTextField];
     [self addSubview: _requestButton];
@@ -33,10 +37,18 @@
     [_usernameTextField makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.top);
         make.left.equalTo(self.left);
+        make.right.equalTo(_requestButton.left);
         make.bottom.equalTo(self.bottom);
         
         make.width.equalTo(self.width).multipliedBy(0.7);
 //        make.height.mas_equalTo(height);
+    }];
+    
+    [_requestButton makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.top);
+        make.left.equalTo(_usernameTextField.right);
+        make.right.equalTo(self.right);
+        make.bottom.equalTo(self.bottom);
     }];
 
 //    UIView *greenView = UIView.new;
@@ -71,9 +83,16 @@
 //        make.right.equalTo(superview.mas_right).offset(-padding);
 //        make.width.equalTo(self.width).multipliedBy(0.25);
 //        make.height.equalTo(greenView.height);
-//        
+//
+    
 //    }];
+    
     return self;
+}
+
+-(void) buttonClicked:(UIButton*)sender
+{
+    [self.delegate searchButtonTapped:self];
 }
 
 

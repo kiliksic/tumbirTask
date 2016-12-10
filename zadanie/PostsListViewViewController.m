@@ -8,6 +8,7 @@
 
 #import "PostsListViewViewController.h"
 #import "SearchBarView.h"
+#import "APIManager.h"
 
 @interface PostsListViewViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -24,6 +25,7 @@
     
     self.title = @"SEARCH POSTS";
     _searchBar = [[SearchBarView alloc] init];
+    _searchBar.delegate = self;
     
     [self.view addSubview:_searchBar];
     
@@ -66,6 +68,19 @@
         make.bottom.equalTo(self.view.bottom);
         
         
+    }];
+}
+
+#pragma mark - SearchButtonDelegate
+
+- (void)searchButtonTapped:(SearchBarView *)sender {
+    APIManager *manager = [[APIManager alloc] init];
+    [manager fetchUserPosts:sender.usernameTextField.text completion:^(BOOL success) {
+        if(success) {
+        
+        }else {
+        
+        }
     }];
 }
 

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SearchBarView.h"
 
-@interface PostsListViewViewController : UIViewController
+@interface PostsListViewViewController : UIViewController <SearchButtonDelegate>
 
 @end

@@ -15,6 +15,9 @@
 		E7091DD71DFB9ECC007049D4 /* zadanieUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7091DD61DFB9ECC007049D4 /* zadanieUITests.m */; };
 		E7091DEB1DFBA634007049D4 /* SearchBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7091DEA1DFBA634007049D4 /* SearchBarView.m */; };
 		E7091DF11DFBAC88007049D4 /* PostsListViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7091DF01DFBAC88007049D4 /* PostsListViewViewController.m */; };
+		E7091DF71DFBDE58007049D4 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E7091DF61DFBDE58007049D4 /* APIManager.m */; };
+		E7091E021DFC019A007049D4 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = E7091E011DFC019A007049D4 /* XMLReader.m */; };
+		E7091E051DFC074E007049D4 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = E7091E041DFC074E007049D4 /* Post.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,12 @@
 		E7091DEF1DFBAC88007049D4 /* PostsListViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostsListViewViewController.h; sourceTree = "<group>"; };
 		E7091DF01DFBAC88007049D4 /* PostsListViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostsListViewViewController.m; sourceTree = "<group>"; };
 		E7091DF21DFBADA5007049D4 /* Zadanie-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Zadanie-Prefix.pch"; sourceTree = "<group>"; };
+		E7091DF51DFBDE58007049D4 /* APIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIManager.h; sourceTree = "<group>"; };
+		E7091DF61DFBDE58007049D4 /* APIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIManager.m; sourceTree = "<group>"; };
+		E7091E001DFC019A007049D4 /* XMLReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLReader.h; sourceTree = "<group>"; };
+		E7091E011DFC019A007049D4 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
+		E7091E031DFC074E007049D4 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		E7091E041DFC074E007049D4 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +134,7 @@
 		E7091DB01DFB9ECC007049D4 /* zadanie */ = {
 			isa = PBXGroup;
 			children = (
+				E7091E061DFC1DD8007049D4 /* Helper */,
 				E7091DF31DFBC96A007049D4 /* ApiManager */,
 				E7091DE51DFBA56E007049D4 /* Views */,
 				E7091DE41DFBA0CA007049D4 /* Controllers */,
@@ -186,6 +196,8 @@
 			isa = PBXGroup;
 			children = (
 				E7091DF41DFBC970007049D4 /* Model */,
+				E7091DF51DFBDE58007049D4 /* APIManager.h */,
+				E7091DF61DFBDE58007049D4 /* APIManager.m */,
 			);
 			name = ApiManager;
 			sourceTree = "<group>";
@@ -193,8 +205,19 @@
 		E7091DF41DFBC970007049D4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E7091E031DFC074E007049D4 /* Post.h */,
+				E7091E041DFC074E007049D4 /* Post.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		E7091E061DFC1DD8007049D4 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				E7091E001DFC019A007049D4 /* XMLReader.h */,
+				E7091E011DFC019A007049D4 /* XMLReader.m */,
+			);
+			name = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -384,6 +407,9 @@
 				E7091DB61DFB9ECC007049D4 /* AppDelegate.m in Sources */,
 				E7091DB31DFB9ECC007049D4 /* main.m in Sources */,
 				E7091DF11DFBAC88007049D4 /* PostsListViewViewController.m in Sources */,
+				E7091DF71DFBDE58007049D4 /* APIManager.m in Sources */,
+				E7091E021DFC019A007049D4 /* XMLReader.m in Sources */,
+				E7091E051DFC074E007049D4 /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class SearchBarView;
+@protocol SearchButtonDelegate <NSObject>
+- (void) searchButtonTapped: (SearchBarView *) sender;
+@end
+
 @interface SearchBarView : UIView
 
+@property (nonatomic, weak) id <SearchButtonDelegate> delegate;
 @property (strong, nonatomic) UITextField *usernameTextField;
 @property (strong, nonatomic) UIButton *requestButton;
-
 
 
 @end
