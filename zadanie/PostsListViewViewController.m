@@ -7,8 +7,13 @@
 //
 
 #import "PostsListViewViewController.h"
+#import "SearchBarView.h"
 
-@interface PostsListViewViewController ()
+@interface PostsListViewViewController () <UITableViewDataSource, UITableViewDelegate>
+
+@property (strong, nonatomic) SearchBarView *searchBar;
+@property (strong, nonatomic) UITableView *tableView;
+
 
 @end
 
@@ -17,82 +22,78 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.view.backgroundColor = [UIColor yellowColor];
+    _searchBar = [[SearchBarView alloc] init];
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
-}
-
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+//    self.view = _searchBar;
+    [self.view addSubview:_searchBar];
     
-    // Configure the cell...
+    [self setupView];
     
+    // init table view
+    _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    
+    // must set delegate & dataSource, otherwise the the table will be empty and not responsive
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    
+    _tableView.backgroundColor = [UIColor cyanColor];
+    
+    // add to canvas
+//    [self.view addSubview:_tableView];
+    
+}
+
+- (void)setupView {
+    [_searchBar makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.top).offset(10);
+        make.left.equalTo(self.view.left);
+        make.right.equalTo(self.view.right);
+        make.width.equalTo(self.view.width);
+        
+        make.height.mas_equalTo(120);
+        
+    }];
+    
+    [_searchBar setBackgroundColor:[UIColor redColor]];
+
+}
+
+#pragma mark - UITableViewDataSource
+// number of section(s), now I assume there is only 1 section
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)theTableView
+{
+    return 1;
+}
+
+// number of row in the section, I assume there is only 1 row
+- (NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+// the cell will be returned to the tableView
+- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    static NSString *cellIdentifier = @"HistoryCell";
+//    
+//    // Similar to UITableViewCell, but
+//    JSCustomCell *cell = (JSCustomCell *)[theTableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//    if (cell == nil) {
+//        cell = [[JSCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+//    }
+//    // Just want to test, so I hardcode the data
+//    cell.descriptionLabel.text = @"Testing";
+    UITableViewCell * cell = [[UITableViewCell alloc] init];
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+#pragma mark - UITableViewDelegate
+// when user tap the row, what action you want to perform
+- (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"selected %d row", indexPath.row);
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

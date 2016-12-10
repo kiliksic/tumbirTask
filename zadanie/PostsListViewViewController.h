@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PostsListViewViewController : UITableViewController
+@interface PostsListViewViewController : UIViewController
 
 @end
