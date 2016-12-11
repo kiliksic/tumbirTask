@@ -9,12 +9,14 @@
 #import "PostsListViewViewController.h"
 #import "SearchBarView.h"
 #import "APIManager.h"
+#import "Post.h"
+#import "DetailPostViewController.h"
 
 @interface PostsListViewViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) SearchBarView *searchBar;
 @property (strong, nonatomic) UITableView *tableView;
-
+@property (strong, nonatomic) NSMutableArray<Post *> *postsArray;
 
 @end
 
@@ -24,101 +26,110 @@
     [super viewDidLoad];
     
     self.title = @"SEARCH POSTS";
-    _searchBar = [[SearchBarView alloc] init];
-    _searchBar.delegate = self;
-    
-    [self.view addSubview:_searchBar];
-    
-    // init table view
-    _tableView = [[UITableView alloc] init];
-    
-    // must set delegate & dataSource, otherwise the the table will be empty and not responsive
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    
-//    _tableView.backgroundColor = [UIColor cyanColor];
-    
-    // add to canvas
-    [self.view addSubview:_tableView];
-    
     [self setupView];
-
-    
 }
 
 - (void)setupView {
+    //SearchBar initialization
+    _searchBar = [[SearchBarView alloc] init];
+    
+    //Tableview initialization
+    _tableView = [[UITableView alloc] init];
+    [self.tableView setShowsVerticalScrollIndicator:NO];
+    [self showResults:false];
+    
+    //Set searchbar delegate, tableview delegate and datasource
+    _searchBar.delegate = self;
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
+    
+    [self.view addSubview:_searchBar];
+    [self.view addSubview:_tableView];
+    
+    //Set constraints for searchbar and tableView
+    int searchBarHeight = 50;
+    
     [_searchBar makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view.top).offset(50);
+        make.top.equalTo(self.mas_topLayoutGuideBottom);
         make.left.equalTo(self.view.left);
         make.right.equalTo(self.view.right);
         make.width.equalTo(self.view.width);
         make.bottom.equalTo(self.tableView.top);
-        
-        make.height.mas_equalTo(80);
-        
+        make.height.mas_equalTo(searchBarHeight);
     }];
-    
-    [_searchBar setBackgroundColor:[UIColor redColor]];
-    
+        
     [_tableView makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.searchBar.bottom);
         make.left.equalTo(self.view.left);
         make.right.equalTo(self.view.right);
         make.width.equalTo(self.view.width);
         make.bottom.equalTo(self.view.bottom);
-        
-        
     }];
+}
+
+- (void)showResults:(BOOL) show {
+    if(show) {
+        self.tableView.hidden = false;
+    }else {
+        self.tableView.hidden = true;
+    }
 }
 
 #pragma mark - SearchButtonDelegate
 
 - (void)searchButtonTapped:(SearchBarView *)sender {
+    [self showResults:false];
+    
     APIManager *manager = [[APIManager alloc] init];
-    [manager fetchUserPosts:sender.usernameTextField.text completion:^(BOOL success) {
+    [manager fetchUserPosts:sender.usernameTextField.text completion:^(BOOL success, NSMutableArray* postsArray) {
         if(success) {
-        
+            self.postsArray = postsArray;
+            [self showResults:true];
+            [self.tableView reloadData];
+    
         }else {
-        
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Error" message:@"Invalid username" preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+            [alertController addAction:ok];
+            
+            [self presentViewController:alertController animated:YES completion:nil];
         }
     }];
 }
 
 #pragma mark - UITableViewDataSource
-// number of section(s), now I assume there is only 1 section
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)theTableView
-{
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)theTableView {
     return 1;
 }
 
-// number of row in the section, I assume there is only 1 row
-- (NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section
-{
-    return 1;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 70;
 }
 
-// the cell will be returned to the tableView
-- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//    static NSString *cellIdentifier = @"HistoryCell";
-//    
-//    // Similar to UITableViewCell, but
-//    JSCustomCell *cell = (JSCustomCell *)[theTableView dequeueReusableCellWithIdentifier:cellIdentifier];
-//    if (cell == nil) {
-//        cell = [[JSCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-//    }
-//    // Just want to test, so I hardcode the data
-//    cell.descriptionLabel.text = @"Testing";
+- (NSInteger)tableView:(UITableView *)theTableView numberOfRowsInSection:(NSInteger)section {
+    return [self.postsArray count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)theTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell * cell = [[UITableViewCell alloc] init];
+    NSString *title = self.postsArray[indexPath.row].description;
+    if(![title isEqualToString:@""]) {
+        cell.textLabel.text = self.postsArray[indexPath.row].description;
+    }else {
+        cell.textLabel.text = @"No description for post";
+    }
     return cell;
 }
 
 #pragma mark - UITableViewDelegate
-// when user tap the row, what action you want to perform
+
 - (void)tableView:(UITableView *)theTableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"selected %d row", indexPath.row);
+    DetailPostViewController *detailController = [[DetailPostViewController alloc] init];
+    detailController.post = self.postsArray[indexPath.row];
+    [self.navigationController pushViewController:detailController animated:YES];
 }
-
 
 @end

@@ -9,15 +9,14 @@
 #import "Post.h"
 
 @implementation Post
-@synthesize postId, description, url;
+@synthesize postId, description, url, photoUrl;
 
 - (instancetype)initWithDictionary:(NSDictionary*)dictionary {
     if (self = [super init]) {
-        NSLog(@"aaaaa %@", dictionary);
-        
         self.postId = dictionary[@"id"];
         self.description = dictionary[@"slug"];
         self.url = dictionary[@"url"];
+        self.photoUrl = dictionary[@"photo-url"];
     }
     return self;
 }

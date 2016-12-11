@@ -18,6 +18,8 @@
 		E7091DF71DFBDE58007049D4 /* APIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E7091DF61DFBDE58007049D4 /* APIManager.m */; };
 		E7091E021DFC019A007049D4 /* XMLReader.m in Sources */ = {isa = PBXBuildFile; fileRef = E7091E011DFC019A007049D4 /* XMLReader.m */; };
 		E7091E051DFC074E007049D4 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = E7091E041DFC074E007049D4 /* Post.m */; };
+		E7091E091DFC3A78007049D4 /* DetailPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7091E081DFC3A78007049D4 /* DetailPostViewController.m */; };
+		E7303DEA1DFD229400EA53F7 /* ImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = E7303DE91DFD229400EA53F7 /* ImageDownloader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,10 @@
 		E7091E011DFC019A007049D4 /* XMLReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLReader.m; sourceTree = "<group>"; };
 		E7091E031DFC074E007049D4 /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		E7091E041DFC074E007049D4 /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		E7091E071DFC3A78007049D4 /* DetailPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailPostViewController.h; sourceTree = "<group>"; };
+		E7091E081DFC3A78007049D4 /* DetailPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailPostViewController.m; sourceTree = "<group>"; };
+		E7303DE81DFD229400EA53F7 /* ImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDownloader.h; sourceTree = "<group>"; };
+		E7303DE91DFD229400EA53F7 /* ImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDownloader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +185,8 @@
 			children = (
 				E7091DEF1DFBAC88007049D4 /* PostsListViewViewController.h */,
 				E7091DF01DFBAC88007049D4 /* PostsListViewViewController.m */,
+				E7091E071DFC3A78007049D4 /* DetailPostViewController.h */,
+				E7091E081DFC3A78007049D4 /* DetailPostViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -198,6 +206,8 @@
 				E7091DF41DFBC970007049D4 /* Model */,
 				E7091DF51DFBDE58007049D4 /* APIManager.h */,
 				E7091DF61DFBDE58007049D4 /* APIManager.m */,
+				E7303DE81DFD229400EA53F7 /* ImageDownloader.h */,
+				E7303DE91DFD229400EA53F7 /* ImageDownloader.m */,
 			);
 			name = ApiManager;
 			sourceTree = "<group>";
@@ -408,7 +418,9 @@
 				E7091DB31DFB9ECC007049D4 /* main.m in Sources */,
 				E7091DF11DFBAC88007049D4 /* PostsListViewViewController.m in Sources */,
 				E7091DF71DFBDE58007049D4 /* APIManager.m in Sources */,
+				E7091E091DFC3A78007049D4 /* DetailPostViewController.m in Sources */,
 				E7091E021DFC019A007049D4 /* XMLReader.m in Sources */,
+				E7303DEA1DFD229400EA53F7 /* ImageDownloader.m in Sources */,
 				E7091E051DFC074E007049D4 /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

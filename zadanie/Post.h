@@ -13,7 +13,7 @@
 @property (nonatomic, retain) NSString *postId;
 @property (nonatomic, retain) NSString *description;
 @property (nonatomic, retain) NSString *url;
-
+@property (nonatomic, retain) NSDictionary *photoUrl;
 
 -(id)initWithDictionary:(NSDictionary*)dictionary;
 
