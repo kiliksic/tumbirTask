@@ -70,6 +70,7 @@
 
 - (void)buttonClicked:(UIButton*)sender
 {
+    [_usernameTextField resignFirstResponder];
     [self.delegate searchButtonTapped:self];
 }
 

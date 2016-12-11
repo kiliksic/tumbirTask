@@ -9,7 +9,7 @@
 -(void)fetchUserPosts:(NSString*)username completion:(void (^)(BOOL success, NSMutableArray *message))completion {
     
     NSString *url, *urlRequestId;
-    url = [[@"http://" stringByAppendingString:username] stringByAppendingString:@".tumblr.com/api/read"];
+    url = [[@"http://" stringByAppendingString:username] stringByAppendingString:@".tumblr.com/api/read?type=photo"];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];
