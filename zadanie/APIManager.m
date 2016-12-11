@@ -8,7 +8,6 @@
 
 -(void)fetchUserPosts:(NSString*)username completion:(void (^)(BOOL success, NSMutableArray *message))completion {
     
-    
     _url = [[@"http://" stringByAppendingString:username] stringByAppendingString:@".tumblr.com/api/read?type=photo"];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -27,8 +26,8 @@
                                                             error:&error];
              NSLog(@"dictionary %@", dict);
              
-            NSMutableArray * postsArray = [[NSMutableArray alloc] init];
-            NSDictionary * postsDictionary = [[[dict objectForKey:@"tumblr"] objectForKey:@"posts"] objectForKey:@"post"];
+             NSMutableArray * postsArray = [[NSMutableArray alloc] init];
+             NSDictionary * postsDictionary = [[[dict objectForKey:@"tumblr"] objectForKey:@"posts"] objectForKey:@"post"];
              
              //We check if posts are returned as array or just a dictionary with single value
              if([postsDictionary isKindOfClass:[NSArray class]]){
