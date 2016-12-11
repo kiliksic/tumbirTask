@@ -1,14 +1,11 @@
 
-
 #import "ImageDownloader.h"
 
 @interface ImageDownloader()
 
-
 @end
 
 @implementation ImageDownloader
-
 
 +(void)downloadImageWithUrl:(NSString*)url
                    progress:(void(^)(NSInteger receivedSize, NSInteger expectedSize))progress

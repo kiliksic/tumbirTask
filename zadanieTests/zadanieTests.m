@@ -7,8 +7,16 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "SearchBarView.h"
+#import "PostsListViewViewController.h"
+#import "DetailPostViewController.h"
+#import "APIManager.h"
 
 @interface zadanieTests : XCTestCase
+
+@property (nonatomic) APIManager *apiManagerToTest;
+@property (nonatomic) PostsListViewViewController *postsVCTest;
+@property (nonatomic) DetailPostViewController *detailPostVCTest;
 
 @end
 
@@ -16,17 +24,34 @@
 
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    self.apiManagerToTest = [[APIManager alloc] init];
+    self.postsVCTest = [[PostsListViewViewController alloc] init];
+    self.detailPostVCTest = [[DetailPostViewController alloc] init];
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testPostsListVC {
+    XCTAssertNotNil(_postsVCTest, @"Cannot find posts list view controller instance");
+}
+
+- (void)testPostDetailVC {
+    XCTAssertNotNil(_detailPostVCTest, @"Cannot find detail post view controller instance");
+}
+
+- (void)testSearchBar {
+    UIApplication *app = [UIApplication sharedApplication];
+    UIView * searchView = (SearchBarView*)[app delegate];
+    XCTAssertNotNil(searchView, @"Cannot find searchBar instance");
+}
+
+- (void)testRequestUrl {
+    NSString * requestPattern = @"http://.tumblr.com/api/read?type=photo";
+    NSString * requestUrl = self.apiManagerToTest.url;
+    
+    XCTAssertNotEqual(requestPattern, requestUrl, @"Username has not been append to the request");
 }
 
 - (void)testPerformanceExample {

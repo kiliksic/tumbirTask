@@ -8,14 +8,14 @@
 
 -(void)fetchUserPosts:(NSString*)username completion:(void (^)(BOOL success, NSMutableArray *message))completion {
     
-    NSString *url, *urlRequestId;
-    url = [[@"http://" stringByAppendingString:username] stringByAppendingString:@".tumblr.com/api/read?type=photo"];
+    
+    _url = [[@"http://" stringByAppendingString:username] stringByAppendingString:@".tumblr.com/api/read?type=photo"];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:configuration];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    [manager GET:url
+    [manager GET:_url
       parameters:nil
      
          success:^(NSURLSessionDataTask *task, id responseObject) {
